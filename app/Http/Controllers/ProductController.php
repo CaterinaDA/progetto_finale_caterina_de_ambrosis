@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('is_active', true)
+        $products = Product::active()
             ->orderBy('created_at', 'desc')
             ->paginate(9);
 
@@ -18,8 +18,8 @@ class ProductController extends Controller
 
     public function show(string $slug)
     {
-        $product = Product::where('slug', $slug)
-            ->where('is_active', true)
+        $product = Product::active()
+            ->where('slug', $slug)
             ->firstOrFail();
 
         return view('products.show', compact('product'));
