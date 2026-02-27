@@ -7,14 +7,26 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::active()
-            ->orderBy('created_at', 'desc')
-            ->paginate(9);
+        $categories = \App\Models\Category::orderBy('name')->get();
 
-        return view('products.index', compact('products'));
+        $productsQuery = Product::active()
+            ->with('category')
+            ->orderBy('created_at', 'desc');
+
+
+        if ($request->filled('category')) {
+            $productsQuery->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        $products = $productsQuery->paginate(9)->withQueryString();
+
+        return view('products.index', compact('products', 'categories'));
     }
+
 
     public function show(string $slug)
     {

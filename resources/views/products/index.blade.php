@@ -8,6 +8,21 @@
             </span>
         </div>
 
+        <form method="GET" action="{{ route('products.index') }}" class="row g-2 mb-4">
+            <div class="col-12 col-md-4">
+                <select name="category" class="form-select" onchange="this.form.submit()">
+                    <option value="">Tutte le categorie</option>
+
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->slug }}"
+                            {{ request('category') === $category->slug ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </form>
+
         <div class="row g-4">
             @foreach ($products as $product)
                 <div class="col-12 col-sm-6 col-lg-4">
@@ -19,6 +34,10 @@
 
                         <div class="card-body d-flex flex-column">
                             <h2 class="h6">{{ $product->name }}</h2>
+
+                            <p class="text-muted small mb-2">
+                                Categoria: {{ $product->category->name }}
+                            </p>
 
                             @if ($product->description)
                                 <p class="text-muted small mb-3">

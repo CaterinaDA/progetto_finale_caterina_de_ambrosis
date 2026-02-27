@@ -9,3 +9,9 @@
     background-color: #f1f3f5;
     height: 180px;
 }
+
+/* Card statiche welcome */
+a .card:hover {
+    transform: translateY(-2px);
+    transition: 0.15s ease-in-out;
+}
