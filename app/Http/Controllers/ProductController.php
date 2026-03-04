@@ -12,21 +12,37 @@ class ProductController extends Controller
         $categories = \App\Models\Category::orderBy('name')->get();
 
         $productsQuery = Product::active()
-            ->with('category')
-            ->orderBy('created_at', 'desc');
+            ->with('category');
 
-
+        // Filtro categoria
         if ($request->filled('category')) {
             $productsQuery->whereHas('category', function ($q) use ($request) {
                 $q->where('slug', $request->category);
             });
         }
-
+        // Ricerca testo
         if ($request->filled('search')) {
             $productsQuery->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
                     ->orWhere('description', 'like', '%' . $request->search . '%');
             });
+        }
+
+        // Ordinamento
+        $sort = $request->get('sort', 'newest');
+
+        switch ($sort) {
+            case 'price_asc':
+                $productsQuery->orderBy('price', 'asc');
+                break;
+
+            case 'price_desc':
+                $productsQuery->orderBy('price', 'desc');
+                break;
+
+            default:
+                $productsQuery->orderBy('created_at', 'desc');
+                break;
         }
 
         $products = $productsQuery->paginate(9)->withQueryString();
