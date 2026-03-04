@@ -8,9 +8,15 @@
             </span>
         </div>
 
-        <form method="GET" action="{{ route('products.index') }}" class="row g-2 mb-4">
+        <form id="filtersForm" method="GET" action="{{ route('products.index') }}" class="row g-2 mb-4">
+
+            <div class="col-12 col-md-6">
+                <input id="searchInput" type="text" name="search" value="{{ request('search') }}"
+                    class="form-control" placeholder="Cerca prodotti...">
+            </div>
+
             <div class="col-12 col-md-4">
-                <select name="category" class="form-select" onchange="this.form.submit()">
+                <select name="category" class="form-select">
                     <option value="">Tutte le categorie</option>
 
                     @foreach ($categories as $category)
@@ -21,6 +27,19 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="col-12 col-md-2 d-grid">
+                <button class="btn btn-dark" type="submit">Filtra</button>
+            </div>
+
+            @if (request('search') || request('category'))
+                <div class="col-12">
+                    <a href="{{ route('products.index') }}" class="btn btn-outline-secondary btn-sm">
+                        Reset filtri
+                    </a>
+                </div>
+            @endif
+
         </form>
 
         <div class="row g-4">
