@@ -25,9 +25,12 @@
                         € {{ number_format($product->price, 2, ',', '.') }}
                     </span>
 
-                    <button class="btn btn-dark">
-                        Aggiungi al carrello
-                    </button>
+                    <form action="{{ route('cart.add', $product) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">
+                            Aggiungi al carrello
+                        </button>
+                    </form>
                 </div>
 
                 <p class="text-muted small mt-3 mb-0">
