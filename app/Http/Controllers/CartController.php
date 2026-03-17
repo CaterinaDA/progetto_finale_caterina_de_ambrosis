@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -80,5 +83,39 @@ class CartController extends Controller
         session()->put('cart', $cart);
 
         return redirect()->route('cart.index');
+    }
+
+    public function checkout()
+    {
+        $cart = session()->get('cart', []);
+
+        if (empty($cart)) {
+            return redirect()->route('cart.index')->with('error', 'Il carrello è vuoto.');
+        }
+
+        $total = 0;
+
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'total_price' => $total,
+            'status' => 'pending',
+        ]);
+
+        foreach ($cart as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'unit_price' => $item['price'],
+            ]);
+        }
+
+        session()->forget('cart');
+
+        return redirect()->route('homepage')->with('message', 'Ordine creato con successo!');
     }
 }

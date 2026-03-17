@@ -6,7 +6,6 @@
             NovaShop
         </a>
 
-        {{-- Toggler Mobile --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
             aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,7 +14,16 @@
         {{-- Links --}}
         <div class="collapse navbar-collapse" id="mainNavbar">
 
-            {{-- Left side --}}
+            @php
+                $cart = session('cart', []);
+                $cartCount = 0;
+
+                foreach ($cart as $item) {
+                    $cartCount += $item['quantity'];
+                }
+            @endphp
+
+            {{-- Lato sinistro --}}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
@@ -25,33 +33,71 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="#">
+                    <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}"
+                        href="{{ route('products.index') }}">
                         Prodotti
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('cart') ? 'active' : '' }}" href="#">
-                        Carrello
+                    <a class="nav-link position-relative {{ request()->is('cart') ? 'active' : '' }}"
+                        href="{{ route('cart.index') }}">
+                        🛒 Carrello
+
+                        @if ($cartCount > 0)
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ $cartCount }}
+                            </span>
+                        @endif
                     </a>
                 </li>
 
             </ul>
 
-            {{-- Right side --}}
-            <ul class="navbar-nav ms-auto">
+            {{-- Lato destro AUTH --}}
+            <ul class="navbar-nav ms-auto align-items-center">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Accedi
-                    </a>
-                </li>
+                {{-- Guest --}}
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            Login
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="btn btn-outline-light btn-sm ms-lg-2" href="#">
-                        Registrati
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">
+                            Registrati
+                        </a>
+                    </li>
+                @endguest
+
+                {{-- Auth --}}
+                @auth
+                    <li class="nav-item">
+                        <span class="nav-link">
+                            {{ Auth::user()->name }}
+                        </span>
+                    </li>
+
+                    {{-- I miei ordini --}}
+                    <li class="nav-item">
+                        <a href="{{ route('orders.index') }}" class="nav-link">
+                            I miei ordini
+                        </a>
+                    </li>
+
+                    {{-- Logout --}}
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-light ms-2">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @endauth
 
             </ul>
 

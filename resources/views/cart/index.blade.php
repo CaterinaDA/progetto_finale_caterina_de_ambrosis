@@ -83,6 +83,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="d-flex justify-content-end mt-3">
+                @auth
+                    <form action="{{ route('cart.checkout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">
+                            Conferma ordine
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-dark">
+                        Accedi per completare l'ordine
+                    </a>
+                @endauth
+            </div>
+
         @endif
     </div>
 </x-layout>
