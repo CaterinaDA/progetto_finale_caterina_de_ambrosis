@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Immagine</th>
                         <th>Nome</th>
                         <th>Categoria</th>
                         <th class="text-end">Prezzo</th>
@@ -26,6 +27,18 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
+
+                            <td>
+                                @if ($product->image)
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                                        style="width: 70px; height: 70px; object-fit: cover;" class="rounded">
+                                @else
+                                    <div class="bg-light d-flex align-items-center justify-content-center rounded"
+                                        style="width: 70px; height: 70px;">
+                                        <span class="text-muted small">No img</span>
+                                    </div>
+                                @endif
+                            </td>
 
                             <td>{{ $product->name }}</td>
 
@@ -51,6 +64,21 @@
                                         class="btn btn-sm btn-outline-dark">
                                         Modifica
                                     </a>
+
+                                    <form action="{{ route('admin.products.toggle', $product) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        @if ($product->is_active)
+                                            <button type="submit" class="btn btn-sm btn-outline-warning">
+                                                Disattiva
+                                            </button>
+                                        @else
+                                            <button type="submit" class="btn btn-sm btn-outline-success">
+                                                Attiva
+                                            </button>
+                                        @endif
+                                    </form>
 
                                     <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
                                         @csrf

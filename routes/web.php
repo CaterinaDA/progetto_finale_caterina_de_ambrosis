@@ -39,6 +39,9 @@ Route::prefix('admin')
 
     Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
       ->name('admin.products.destroy');
+
+    Route::patch('/products/{product}/toggle', [AdminProductController::class, 'toggle'])
+      ->name('admin.products.toggle');
   });
 
 

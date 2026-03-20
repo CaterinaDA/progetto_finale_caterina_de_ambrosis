@@ -144,113 +144,11 @@
             </div>
 
             <div class="row g-4">
-
-                {{-- Prodotto 1 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Cuffie Wireless</h3>
-                            <p class="text-muted small mb-3">Audio • Bluetooth • 20h</p>
-
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 49,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-
+                @foreach ($featuredProducts as $product)
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <x-product-card :product="$product" />
                     </div>
-                </div>
-
-                {{-- Prodotto 2 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Lampada da Tavolo</h3>
-                            <p class="text-muted small mb-3">Casa • LED • Design</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 29,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Prodotto 3 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Tappetino Yoga</h3>
-                            <p class="text-muted small mb-3">Sport • Antiscivolo</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 19,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Prodotto 4 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Zaino Urban</h3>
-                            <p class="text-muted small mb-3">Moda • 20L • Waterproof</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 39,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Prodotto 5 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Crema Viso</h3>
-                            <p class="text-muted small mb-3">Beauty • Idratante</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 14,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Prodotto 6 --}}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="bg-secondary-subtle d-flex align-items-center justify-content-center">
-                            <span class="text-muted">Immagine</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="h6">Romanzo Thriller</h3>
-                            <p class="text-muted small mb-3">Libri • Bestseller</p>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">€ 12,90</span>
-                                <a href="#" class="btn btn-dark btn-sm">Dettagli</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
 
         </div>

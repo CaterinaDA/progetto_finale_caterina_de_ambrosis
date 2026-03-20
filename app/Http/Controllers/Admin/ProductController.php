@@ -32,12 +32,17 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'is_active' => 'required|boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']) . '-' . uniqid();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
 
         Product::create($validated);
 
@@ -78,5 +83,15 @@ class ProductController extends Controller
         return redirect()
             ->route('admin.products.index')
             ->with('message', 'Prodotto eliminato con successo!');
+    }
+
+    public function toggle(Product $product)
+    {
+        $product->is_active = !$product->is_active;
+        $product->save();
+
+        return redirect()
+            ->route('admin.products.index')
+            ->with('message', 'Visibilità prodotto aggiornata con successo!');
     }
 }

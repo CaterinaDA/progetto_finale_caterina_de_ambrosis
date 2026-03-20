@@ -7,10 +7,15 @@
 
         <div class="row g-4">
 
-            <div class="col-12 col-lg-6">
-                <div class="product-placeholder d-flex align-items-center justify-content-center rounded">
-                    <span class="text-muted">Immagine</span>
-                </div>
+            <div class="mb-4">
+                @if ($product->image)
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                        class="img-fluid product-show-image rounded">
+                @else
+                    <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                        <span class="text-muted">Nessuna immagine disponibile</span>
+                    </div>
+                @endif
             </div>
 
             <div class="col-12 col-lg-6">
