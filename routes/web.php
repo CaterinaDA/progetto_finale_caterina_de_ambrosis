@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,12 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 
-// Admin
+// Admin Controller
 Route::prefix('admin')
   ->middleware(['auth', 'admin'])
   ->group(function () {
 
+    // Admin Product Controller
     Route::get('/products', [AdminProductController::class, 'index'])
       ->name('admin.products.index');
 
@@ -42,6 +44,16 @@ Route::prefix('admin')
 
     Route::patch('/products/{product}/toggle', [AdminProductController::class, 'toggle'])
       ->name('admin.products.toggle');
+
+    // Admin Category Controller
+    Route::get('/categories', [CategoryController::class, 'index'])
+      ->name('admin.categories.index');
+
+    Route::get('/categories/create', [CategoryController::class, 'create'])
+      ->name('admin.categories.create');
+
+    Route::post('/categories', [CategoryController::class, 'store'])
+      ->name('admin.categories.store');
   });
 
 
