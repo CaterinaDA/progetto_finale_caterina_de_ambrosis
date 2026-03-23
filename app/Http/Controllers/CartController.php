@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderConfirmed;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -113,6 +115,10 @@ class CartController extends Controller
                 'unit_price' => $item['price'],
             ]);
         }
+
+        $order->load('items.product');
+
+        Mail::to(Auth::user()->email)->send(new OrderConfirmed($order));
 
         session()->forget('cart');
 
