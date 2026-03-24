@@ -45,6 +45,11 @@
                         <input type="file" name="image" id="image" class="form-control" accept="image/*">
                     </div>
 
+                    <div class="mt-3">
+                        <img id="previewImage" src="#" alt="Preview" style="max-width: 200px; display: none;"
+                            class="rounded border">
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="price" class="form-label">Prezzo</label>

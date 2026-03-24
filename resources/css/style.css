@@ -22,6 +22,13 @@
     background-color: #f8f9fa;
 }
 
+/* Immagini categorie welcome */
+.category-image {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
 /* Card statiche welcome */
 a .card:hover {
     transform: translateY(-2px);

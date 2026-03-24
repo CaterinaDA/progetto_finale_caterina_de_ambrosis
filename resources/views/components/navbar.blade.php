@@ -55,7 +55,7 @@
 
             </ul>
 
-            {{-- Lato destro AUTH --}}
+            {{-- Lato destro --}}
             <ul class="navbar-nav ms-auto align-items-center">
 
                 {{-- Guest --}}
@@ -75,17 +75,33 @@
 
                 {{-- Auth --}}
                 @auth
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            {{ Auth::user()->name }}
-                        </span>
-                    </li>
-
                     {{-- I miei ordini --}}
                     <li class="nav-item">
                         <a href="{{ route('orders.index') }}" class="nav-link">
                             I miei ordini
                         </a>
+                    </li>
+
+                    {{-- Link solo per Admin --}}
+                    @if (Auth::user()->is_admin)
+                        <li class="nav-item">
+                            <a href="{{ route('admin.products.index') }}" class="nav-link">
+                                Admin prodotti
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                                Admin categorie
+                            </a>
+                        </li>
+                    @endif
+
+                    {{-- Nome utente --}}
+                    <li class="nav-item">
+                        <span class="nav-link">
+                            {{ Auth::user()->name }}
+                        </span>
                     </li>
 
                     {{-- Logout --}}
