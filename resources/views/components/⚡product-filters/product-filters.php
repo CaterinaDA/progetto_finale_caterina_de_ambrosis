@@ -3,14 +3,20 @@
 use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 new class extends Component
 {
     use WithPagination;
 
+    #[Url]
     public string $search = '';
+
+    #[Url]
     public string $category = '';
+
+    #[Url]
     public string $sort = 'newest';
 
     public function updatingSearch()

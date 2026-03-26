@@ -29,8 +29,25 @@
     object-fit: cover;
 }
 
-/* Card statiche welcome */
+/* Card welcome */
 a .card:hover {
     transform: translateY(-2px);
     transition: 0.15s ease-in-out;
+}
+
+/* Immagini Admin Categorie Index */
+.category-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.category-thumb-placeholder {
+    width: 70px;
+    height: 70px;
+}
+
+/* Immagini Admin Categorie Edit */
+.category-preview {
+    max-width: 200px;
 }

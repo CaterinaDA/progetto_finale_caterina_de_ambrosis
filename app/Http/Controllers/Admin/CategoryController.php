@@ -25,14 +25,53 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('categories', 'public');
+        }
 
         Category::create($validated);
 
         return redirect()
             ->route('admin.categories.index')
             ->with('message', 'Categoria creata con successo!');
+    }
+
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $validated['slug'] = Str::slug($validated['name']);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        $category->update($validated);
+
+        return redirect()
+            ->route('admin.categories.index')
+            ->with('message', 'Categoria aggiornata con successo!');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()
+            ->route('admin.categories.index')
+            ->with('message', 'Categoria eliminata con successo!');
     }
 }

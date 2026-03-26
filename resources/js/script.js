@@ -1,20 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Debounce Search(catalogo)
-    const form = document.getElementById("filtersForm");
-    const searchInput = document.getElementById("searchInput");
-
-    if (form && searchInput) {
-        let timer;
-
-        searchInput.addEventListener("input", () => {
-            clearTimeout(timer);
-
-            timer = setTimeout(() => {
-                form.submit();
-            }, 300);
-        });
-    }
-
     // Preview Immagine (Admin)
     const imageInput = document.getElementById("image");
     const previewImage = document.getElementById("previewImage");
@@ -28,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 reader.onload = function (e) {
                     previewImage.src = e.target.result;
-                    previewImage.style.display = "block";
+                    previewImage.classList.remove("d-none");
                 };
 
                 reader.readAsDataURL(file);

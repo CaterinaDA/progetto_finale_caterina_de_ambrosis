@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -15,6 +16,8 @@ class PublicController extends Controller
             ->take(6)
             ->get();
 
-        return view('welcome', compact('featuredProducts'));
+        $categories = Category::orderBy('name')->get();
+
+        return view('welcome', compact('featuredProducts', 'categories'));
     }
 }
