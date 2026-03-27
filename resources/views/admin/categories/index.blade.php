@@ -51,7 +51,8 @@
                                         Modifica
                                     </a>
 
-                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST"
+                                        onsubmit="return confirm('Sei sicura di voler eliminare questa categoria?')">
                                         @csrf
                                         @method('DELETE')
 

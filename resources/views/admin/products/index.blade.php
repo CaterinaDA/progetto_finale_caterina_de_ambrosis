@@ -80,7 +80,8 @@
                                         @endif
                                     </form>
 
-                                    <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
+                                    <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
+                                        onsubmit="return confirm('Sei sicura di voler eliminare questo prodotto?')">
                                         @csrf
                                         @method('DELETE')
 

@@ -2,7 +2,7 @@
     {{-- Hero --}}
     <section class="py-5">
         <div class="container">
-            <div class="p-5 bg-light border rounded-3 shadow-sm text-center">
+            <div class="p-5 bg-white border rounded-3 shadow text-center">
 
                 <h1 class="display-5 fw-bold mb-3">NovaShop</h1>
 
