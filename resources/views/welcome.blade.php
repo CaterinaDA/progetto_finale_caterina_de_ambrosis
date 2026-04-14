@@ -2,17 +2,23 @@
     {{-- Hero --}}
     <section class="py-5">
         <div class="container">
-            <div class="p-5 bg-white border rounded-3 shadow text-center">
+            <div class="p-5 hero-box border rounded-4 shadow text-center hero-content">
 
-                <h1 class="display-5 fw-bold mb-3">NovaShop</h1>
+                <h1 class="display-4 fw-bold mb-3">NovaShop</h1>
 
-                <p class="lead text-muted mb-4">
-                    Spedizione veloce • Reso facile entro 30 giorni • Assistenza clienti
+                <p class="lead text-muted mb-4 hero-subtitle">
+                    Scopri prodotti selezionati, naviga per categorie e acquista in modo semplice, moderno e intuitivo.
                 </p>
 
-                <a href="{{ route('products.index') }}" class="btn btn-dark btn-lg">
-                    Vai al catalogo
-                </a>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{{ route('products.index') }}" class="btn btn-dark btn-lg px-4">
+                        Vai al catalogo
+                    </a>
+
+                    <a href="#categorie" class="btn btn-outline-dark btn-lg px-4 hero-outline-btn">
+                        Esplora categorie
+                    </a>
+                </div>
 
             </div>
         </div>
@@ -20,7 +26,7 @@
     {{-- Hero end --}}
 
     {{-- Categorie --}}
-    <section class="py-5">
+    <section class="py-5" id="categorie">
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center mb-4">

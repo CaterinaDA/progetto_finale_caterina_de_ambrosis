@@ -17,8 +17,7 @@
                         <th>Immagine</th>
                         <th>Nome</th>
                         <th>Slug</th>
-                        <th></th>
-                        <th></th>
+                        <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,12 +37,6 @@
                             </td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
-                            <td>
-                                <a href="{{ route('admin.categories.edit', $category) }}"
-                                    class="btn btn-sm btn-outline-dark">
-                                    Modifica
-                                </a>
-                            </td>
                             <td>
                                 <div class="d-flex gap-2">
                                     <a href="{{ route('admin.categories.edit', $category) }}"

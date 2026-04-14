@@ -64,10 +64,15 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'is_active' => 'required|boolean',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
 
         $product->update($validated);
 

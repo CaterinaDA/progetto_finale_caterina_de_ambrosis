@@ -14,6 +14,7 @@
                 wire:model.live.debounce.300ms="search">
         </div>
 
+        {{-- Filtro categorie --}}
         <div class="col-12 col-md-3">
             <select class="form-select" wire:model.live="category">
                 <option value="">Tutte le categorie</option>
@@ -26,6 +27,7 @@
             </select>
         </div>
 
+        {{-- Filtro prezzo --}}
         <div class="col-12 col-md-2">
             <select class="form-select" wire:model.live="sort">
                 <option value="newest">Più recenti</option>

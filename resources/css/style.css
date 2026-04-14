@@ -1,6 +1,14 @@
+:root {
+    --primary-color: #013036;
+    --accent-color: #02aabd;
+    --deep-teal: #017582;
+    --soft-bg: #f5f7fa;
+    --light-accent: #e9f5f6;
+}
+
 /* BODY */
 body {
-    background-color: #f5f7fa;
+    background-color: var(--soft-bg);
 }
 
 section {
@@ -9,22 +17,149 @@ section {
 
 /* HERO (Homepage) */
 .hero-box {
-    background: linear-gradient(135deg, #ffffff, #f1f3f5);
+    background: linear-gradient(135deg, #f8fbfc, #e6f4f6 50%, #d7eef1);
+}
+
+.hero-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    background-color: rgba(2, 170, 189, 0.12);
+    color: var(--primary-color);
+    border: 1px solid rgba(2, 170, 189, 0.25);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.hero-subtitle {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-outline-btn {
+    border-width: 2px;
+    color: var(--primary-color);
+}
+
+.hero-outline-btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--primary-color) !important;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    transition: 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.navbar .nav-link.active {
+    color: var(--accent-color) !important;
+    font-weight: 600;
+}
+
+.navbar .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.65);
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    border-color: #ffffff;
+}
+
+/* BOTTONI */
+.btn-dark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+/* BOTTONI QUANTITA' CARRELLO */
+.cart-qty-btn {
+    min-width: 38px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: #ffffff;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+
+.cart-qty-btn:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+/* PREZZI */
+.price-text {
+    color: var(--primary-color);
+}
+
+/* BADGE */
+.badge.bg-success {
+    background-color: var(--deep-teal) !important;
+}
+
+.badge.bg-secondary {
+    background-color: var(--primary-color) !important;
 }
 
 /* CARD (globali) */
 .card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
     transition: all 0.2s ease-in-out;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
 a:hover .card {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     transition: 0.15s ease-in-out;
+}
+
+/* CARD PRODOTTO */
+.product-card {
+    background-color: #ffffff;
+}
+
+.product-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 /* PRODOTTI */
@@ -73,4 +208,27 @@ a:hover .card {
 
 .category-preview {
     max-width: 200px;
+}
+
+/* PAGINAZIONE */
+.pagination {
+    --bs-pagination-color: var(--primary-color);
+    --bs-pagination-bg: #ffffff;
+    --bs-pagination-border-color: #d6dee2;
+    --bs-pagination-hover-color: #ffffff;
+    --bs-pagination-hover-bg: var(--accent-color);
+    --bs-pagination-hover-border-color: var(--accent-color);
+    --bs-pagination-focus-color: #ffffff;
+    --bs-pagination-focus-bg: var(--accent-color);
+    --bs-pagination-focus-box-shadow: none;
+    --bs-pagination-active-color: #ffffff;
+    --bs-pagination-active-bg: var(--primary-color);
+    --bs-pagination-active-border-color: var(--primary-color);
+    --bs-pagination-disabled-color: #8a9499;
+    --bs-pagination-disabled-bg: #ffffff;
+    --bs-pagination-disabled-border-color: #d6dee2;
+}
+
+.page-link {
+    transition: 0.2s ease-in-out;
 }

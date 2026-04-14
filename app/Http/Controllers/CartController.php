@@ -84,7 +84,9 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return redirect()->route('cart.index');
+        return redirect()
+            ->route('cart.index')
+            ->with('message', 'Quantità aggiornata');
     }
 
     public function checkout()

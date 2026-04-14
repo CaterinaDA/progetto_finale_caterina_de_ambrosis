@@ -3,7 +3,7 @@
 
         <h1 class="mb-4">Modifica prodotto</h1>
 
-        <form action="{{ route('admin.products.update', $product) }}" method="POST">
+        <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -26,9 +26,21 @@
 
             <div class="mb-3">
                 <label class="form-label">Descrizione</label>
-                <textarea name="description" class="form-control">
-{{ old('description', $product->description) }}
-                </textarea>
+                <textarea name="description" class="form-control">{{ old('description', $product->description) }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Immagine prodotto</label>
+                <input type="file" name="image" id="image" class="form-control" accept="image/*">
+            </div>
+
+            <div class="mt-3 mb-3">
+                @if ($product->image)
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" id="previewImage"
+                        class="category-preview rounded border">
+                @else
+                    <img id="previewImage" src="#" alt="Preview" class="category-preview rounded border d-none">
+                @endif
             </div>
 
             <div class="mb-3">

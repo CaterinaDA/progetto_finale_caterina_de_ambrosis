@@ -42,7 +42,7 @@
                                         <form action="{{ route('cart.update', $item['product_id']) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="action" value="decrease">
-                                            <button class="btn btn-outline-secondary btn-sm">-</button>
+                                            <button class="btn btn-sm cart-qty-btn">-</button>
                                         </form>
 
                                         <span>{{ $item['quantity'] }}</span>
@@ -51,7 +51,7 @@
                                         <form action="{{ route('cart.update', $item['product_id']) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="action" value="increase">
-                                            <button class="btn btn-outline-secondary btn-sm">+</button>
+                                            <button class="btn btn-sm cart-qty-btn">+</button>
                                         </form>
 
                                     </div>
@@ -84,6 +84,7 @@
                 </div>
             </div>
 
+            {{-- Autenticazione --}}
             <div class="d-flex justify-content-end mt-3">
                 @auth
                     <form action="{{ route('cart.checkout') }}" method="POST">
